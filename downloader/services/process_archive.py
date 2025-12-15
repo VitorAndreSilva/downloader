@@ -5,7 +5,7 @@ from downloader.utils.generic import download_generic
 
 def process_archive(instance: Archive):
     if instance.type == instance.TypeChoices.VIDEO:
-        download_video(instance.url, instance=None)
+        download_video(instance.url, instance)
     elif instance.type == instance.TypeChoices.ARCHIVE:
         download_archive(instance.url, instance)
     else:
