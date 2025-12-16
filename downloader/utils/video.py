@@ -8,6 +8,10 @@ os.makedirs(output_directory, exist_ok=True)
 
 def download_video(url, instance):
     ydl_opts = {
+        "http_headers": {
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:106.0) *continua*",
+            "Accept-Language": "pt-BR,pt;q=0.9",
+        },
         'format': 'bestvideo+bestaudio/best',
         'merge_output_format': 'mp4',
         'outtmpl': f'{output_directory}/%(title)s.%(ext)s'

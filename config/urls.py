@@ -4,10 +4,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from downloader.views import DownloaderViewSet
+from authentication.views import UserViewSet
 
 router = DefaultRouter()
 
 router.register(r'archive', DownloaderViewSet)
+router.register(r'auth', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
