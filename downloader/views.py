@@ -3,10 +3,12 @@ from downloader.models import Archive
 from downloader.serializers import ArchiveSerializer
 from downloader.services.process_archive import process_archive
 from downloader.services.mime_type import mime_type
+from rest_framework.permissions import IsAuthenticated
 
 class DownloaderViewSet(viewsets.ModelViewSet):
     queryset = Archive.objects.all()
     serializer_class = ArchiveSerializer
+    permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
         instance = serializer.save()
         print("Instância salva: ", instance)

@@ -1,11 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Archive(models.Model):
     class TypeChoices(models.TextChoices):
         VIDEO = "Video"
         ARCHIVE = "Archive"
         GENERIC = "Generic"
-    user = models.CharField() # Será substituído pelo usuário abstrato do Django
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=42)
     url = models.URLField()
     archive = models.FileField(upload_to='downloads/', null=True, blank=True)
