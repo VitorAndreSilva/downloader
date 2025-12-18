@@ -6,7 +6,7 @@ from downloader.services.mime_type import mime_type
 from rest_framework.permissions import IsAuthenticated
 
 class DownloaderViewSet(viewsets.ModelViewSet):
-    #queryset = Archive.objects.all()
+    queryset = Archive.objects.none()
     serializer_class = ArchiveSerializer
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
