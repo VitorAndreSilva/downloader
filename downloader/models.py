@@ -8,7 +8,7 @@ class Archive(models.Model):
         GENERIC = "Generic"
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=42)
-    url = models.URLField()
+    url = models.URLField(max_length=1000)
     archive = models.FileField(upload_to='downloads/', null=True, blank=True)
     type = models.CharField(choices=TypeChoices.choices, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
