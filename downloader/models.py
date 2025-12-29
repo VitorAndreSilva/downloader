@@ -10,7 +10,7 @@ class Archive(models.Model):
     name = models.CharField(max_length=42)
     url = models.URLField(max_length=1000)
     archive = models.FileField(upload_to='downloads/', null=True, blank=True)
-    type = models.CharField(choices=TypeChoices.choices, null=True, blank=True)
+    type = models.CharField(choices=TypeChoices.choices, max_length=7, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
