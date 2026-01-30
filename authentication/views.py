@@ -11,16 +11,20 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
 from rest_framework import status
 
+from authentication.utils.send_mail import registration_request
+
 class UserView(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            registration_request(user)
 
-            return Response({
-                {"detail": "Usuário cadastrado. Solicitação foi enviada ao administrador."}
-            }, status=status.HTTP_201_CREATED)
+            return Response(
+                {"detail": "Usuário cadastrado. Solicitação foi enviada ao administrador."},
+                status=status.HTTP_201_CREATED
+            )
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
