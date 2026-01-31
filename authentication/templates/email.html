@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permissão de acesso</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111827;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #e5e7eb;
+        }
+
+        .wrapper {
+            max-width: 520px;
+            margin: 32px auto;
+            background-color: #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #111827;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .content {
+            padding: 24px;
+        }
+
+        .content h2 {
+            margin-top: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d1d5db;
+            margin-bottom: 12px;
+        }
+
+        .content span {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 6px 10px;
+            background-color: #111827;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Permissão de acesso</h1>
+        </header>
+
+        <div class="content">
+            <h2>Olá</h2>
+            <p>
+                Identificamos um novo cadastro no seu sistema:
+                <br>
+                <span>{{email}}</span>
+            </p>
+            <p>
+                Fica a seu critério concedê-lo o acesso ao Downloader ou rejeitá-lo
+                por meio do painel de administração do site.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
