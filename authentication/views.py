@@ -1,11 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 
 from authentication.serializers import RegisterSerializer, CustomTokenObtainPairSerializer
 from django.contrib.auth.models import User
 
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from rest_framework.response import Response
@@ -30,6 +29,16 @@ class UserView(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def account(request):
+    user = request.user
+    return Response({
+        "id": user.id,
+        "email": user.email,
+        "is_staff": user.is_staff
+    })
 
 @api_view(["POST"])
 @permission_classes([IsAdminUser])
