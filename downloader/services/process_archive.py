@@ -1,11 +1,11 @@
 from downloader.models import Archive
-from downloader.utils.video import download_video
+from downloader.tasks import video_task
 from downloader.utils.archive import download_archive
 from downloader.utils.generic import download_generic
 
 def process_archive(instance: Archive):
     if instance.type == instance.TypeChoices.VIDEO:
-        download_video(instance.url, instance)
+        video_task.delay(instance.id)
     elif instance.type == instance.TypeChoices.ARCHIVE:
         download_archive(instance.url, instance)
     else:

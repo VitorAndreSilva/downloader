@@ -2,11 +2,15 @@ import yt_dlp
 import os
 from config import settings
 from django.core.files import File
+from downloader.models import Archive
 
 output_directory = os.path.join(settings.MEDIA_ROOT, 'downloads')
 os.makedirs(output_directory, exist_ok=True)
 
-def download_video(url, instance):
+def download_video(archive_id):
+    archive = Archive.objects.get(id=archive_id)
+    url = archive.url
+
     ydl_opts = {
         "http_headers": {
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:106.0) *continua*",
@@ -22,9 +26,9 @@ def download_video(url, instance):
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
         with open(filename, 'rb') as file:
-            instance.archive.save(os.path.basename(filename), File(file))
+            archive.archive.save(os.path.basename(filename), File(file))
         
-        return instance.archive.url
+        return archive.archive.url
             
     except Exception as e:
         print(f"Erro ao baixar o vídeo: {e}")
