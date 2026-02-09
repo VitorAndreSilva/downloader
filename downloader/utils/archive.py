@@ -5,7 +5,7 @@ from django.core.files import File
 
 def download_archive(url, instance):
     # Requisita o arquivo
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, verify=False)
     # Dá o caminho do arquivo
     output_directory = os.path.join(settings.MEDIA_ROOT, 'downloads')
     os.makedirs(output_directory, exist_ok=True)
