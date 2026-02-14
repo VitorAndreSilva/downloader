@@ -5,7 +5,7 @@ class Archive(models.Model):
     class TypeChoices(models.TextChoices):
         VIDEO = "Video"
         ARCHIVE = "Archive"
-        GENERIC = "Generic"
+        #GENERIC = "Generic"
     class StatusChoice(models.TextChoices):
         FALHA = "Falha"
         PENDENTE = "Pendente"

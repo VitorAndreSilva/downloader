@@ -5,12 +5,11 @@ import mimetypes
 def mime_type(instance: Archive):
     mime, encoding = mimetypes.guess_type(instance.url, strict=True)
     if mime:
-        if mime.startswith('image') or mime.startswith('text') or mime.startswith('application'):
-            instance.type = instance.TypeChoices.ARCHIVE
-        elif mime.startswith('video'):
+        if mime.startswith('video'):
             instance.type = instance.TypeChoices.VIDEO
+        #elif mime.startswith('image') or mime.startswith('text') or mime.startswith('application'):
         else:
-            instance.type = instance.TypeChoices.GENERIC
+            instance.type = instance.TypeChoices.ARCHIVE
     else:
         fill_type(instance)
     print(instance.type)
