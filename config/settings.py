@@ -3,6 +3,8 @@ from pathlib import Path
 import os
 import dj_database_url
 
+from datetime import timedelta
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -132,6 +134,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), 
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
